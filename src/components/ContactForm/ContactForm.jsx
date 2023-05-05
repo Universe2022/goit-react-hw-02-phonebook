@@ -1,36 +1,28 @@
-import { Component } from 'react'; // імпорт базового класу React Component
-import css from './ContactForm.module.css'; // стилізація
-import PropTypes from 'prop-types'; // типізація
+import { Component } from 'react';
+import css from './ContactForm.module.css'; 
+import PropTypes from 'prop-types'; 
 
 export class ContactForm extends Component {
   state = {
     name: '',
     number: '',
   };
-
-  // очищення вмісту форми
   resetForm = () => {
     this.setState({ name: '', number: '' });
   };
-
-  // оновлення стану компонента
   onChangeInput = evt => {
-    const { name, value } = evt.currentTarget; // розпаковка значення name та value з об'єкту події
-    this.setState({ [name]: value }); // оновлення значення властивості з назвою, яка зберігається в змінній name
+    const { name, value } = evt.currentTarget; 
+    this.setState({ [name]: value });
   };
-
   render() {
     return (
       <>
         <form
           className={css.formstyle}
           onSubmit={evt => {
-            evt.preventDefault(); // уникнення перезавантаження сторінки
-
-            // Передача стану компонента до методу addContact,
-            // що передається як пропс (props) з батьківського компоненту.
+            evt.preventDefault(); 
             this.props.addContact(this.state);
-            this.resetForm(); // очищення вмісту форми
+            this.resetForm(); 
           }}
         >
           <label className={css.label}>
@@ -38,8 +30,8 @@ export class ContactForm extends Component {
             <br />
             <input
               className={css.input}
-              onChange={this.onChangeInput} // обробник події, який буде викликаний при зміні значення поля введення
-              value={this.state.name} // встановлення поточного значення поля введення, яке зберігається в стані компоненту
+              onChange={this.onChangeInput} 
+              value={this.state.name} 
               type="text"
               name="name"
               pattern="^[a-zA-Zа-яА-Я]+(([' -][a-zA-Zа-яА-Я ])?[a-zA-Zа-яА-Я]*)*$"
@@ -53,8 +45,8 @@ export class ContactForm extends Component {
             <br />
             <input
               className={css.input}
-              onChange={this.onChangeInput} // обробник події, який буде викликаний при зміні значення поля введення
-              value={this.state.number} // встановлення поточного значення поля введення, яке зберігається в стані компоненту
+              onChange={this.onChangeInput} 
+              value={this.state.number} 
               type="tel"
               name="number"
               pattern="\+?\d{1,4}?[-.\s]?\(?\d{1,3}?\)?[-.\s]?\d{1,4}[-.\s]?\d{1,4}[-.\s]?\d{1,9}"
@@ -71,8 +63,6 @@ export class ContactForm extends Component {
     );
   }
 }
-
-// типізація
 ContactForm.propTypes = {
-  addContact: PropTypes.func.isRequired, // функція
+  addContact: PropTypes.func.isRequired, 
 }

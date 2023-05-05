@@ -1,9 +1,5 @@
-import css from './Filter.module.css'; // стилізація
-import PropTypes from 'prop-types'; // типізація
-
-// Компонент фільтру для пошуку контактів за ім'ям.
-// filter - містить введений текст фільтру.
-// onChangeInput - функція, яка викликається при зміні значення фільтру.
+import css from './Filter.module.css'; 
+import PropTypes from 'prop-types'; 
 export const Filter = ({ filter, onChangeInput }) => {
   return (
     <>
@@ -12,8 +8,8 @@ export const Filter = ({ filter, onChangeInput }) => {
         <br />
         <input
           className={css.input}
-          onChange={onChangeInput} // при зміні значення поля - виклик функції onChangeInput
-          value={filter} // початкове значення, яке зберігається в filter
+          onChange={onChangeInput} 
+          value={filter} 
           type="text"
           name="filter"
         />
@@ -21,9 +17,7 @@ export const Filter = ({ filter, onChangeInput }) => {
     </>
   );
 }
-
-// типізація
 Filter.propTypes = {
-  filter: PropTypes.string.isRequired, // рядок
-  onChangeInput: PropTypes.func.isRequired // функція
+  filter: PropTypes.string.isRequired, 
+  onChangeInput: PropTypes.func.isRequired 
 };

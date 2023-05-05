@@ -1,12 +1,8 @@
-import PropTypes from 'prop-types'; // типізація
-import css from './ContactList.module.css'; // стилізація
-
-// Компонент зі списком контактів.
-// contacts - масив, delContact - функція
+import PropTypes from 'prop-types';
+import css from './ContactList.module.css';
 export const ContactList = ({ contacts, delContact }) => {
   return (
     <ul className={css.list}>
-      {/* Проходження по кожному контакту та повернення нового масиву з елементами списку */}
       {contacts.map(contact => {
         return (
           <li className={css.item} key={contact.id}>
@@ -15,7 +11,6 @@ export const ContactList = ({ contacts, delContact }) => {
             <button
               className={css.button}
               type="button"
-              // Функція delContact в яку передається contact.id для видалення контакту зі списку.
               onClick={() => {
                 delContact(contact.id);
               }}
@@ -29,8 +24,7 @@ export const ContactList = ({ contacts, delContact }) => {
   );
 };
 
-// типізація
 ContactList.propTypes = {
-  delContact: PropTypes.func.isRequired, // функція
-  contacts: PropTypes.array.isRequired, // масив
+  delContact: PropTypes.func.isRequired, 
+  contacts: PropTypes.array.isRequired, 
 };
