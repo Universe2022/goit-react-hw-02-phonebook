@@ -21,25 +21,24 @@ export class App extends Component {
   };
 
   addContact = ({ name, number }) => {
-    if (
-      this.state.contacts.some(
-        value => value.name.toLocaleLowerCase() === name.toLocaleLowerCase()
-      )
-    ) {
-      alert(`${name} is already in contacts`);
-    } else {
-      this.setState(oldState => {
-        const list = [...oldState.contacts]; 
-        list.push({
-          id: nanoid(), 
-          name: name,
-          number: number,
+    this.state.contacts.some(
+      contact => contact.name.toLocaleLowerCase() === name.toLocaleLowerCase()
+    )
+      ? alert(`${name} is already in contacts`)
+      : this.setState(prevState => {
+          return {
+            contacts: [
+              ...prevState.contacts,
+              {
+                id: nanoid(),
+                name: name,
+                number: number,
+              },
+            ],
+          };
         });
-
-        return { contacts: list };
-      });
-    }
   };
+
   filter = () => {
     const { contacts, filter } = this.state;
 
